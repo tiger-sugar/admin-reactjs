@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { Form, Button, Container, Spinner } from "react-bootstrap";
 import axios from "axios";
 import "./login.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { loginSuccess } from "../../redux/saga-modules/auth/actions";
+import api from "../../config/api";
 function Login() {
   useEffect(() => {
     console.log("abc");
@@ -10,7 +13,9 @@ function Login() {
   const [inputUsername, setinputUsername] = useState("");
   const [inputPassword, setinputPassword] = useState("");
   const [isLoading, setisLoading] = useState(false);
-
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth?.user);
+  console.log("log usser", user);
   const onLogin = () => {
     setisLoading(true);
     let dataLogin = {
@@ -18,10 +23,11 @@ function Login() {
       password: inputPassword,
     };
     axios
-      .post("http://127.0.0.1:5000/auth/login", dataLogin)
-      .then((res) => {
+      .post(api.API_LOGIN, dataLogin)
+      .then(({ data }) => {
         setisLoading(true);
-        console.log("log res", res);
+        dispatch(loginSuccess({ dataLogin: data }));
+        console.log("log res", data);
       })
       .catch((err) => {
         console.log("err", err.response);
@@ -29,7 +35,7 @@ function Login() {
       .finally(() => {
         setTimeout(() => {
           setisLoading(false);
-        }, 2000);
+        }, 1000);
       });
   };
 
@@ -42,7 +48,6 @@ function Login() {
           <Form.Control
             onChange={(e) => {
               setinputUsername(e.target.value);
-              console.log("log value", e.target.value);
             }}
             value={inputUsername}
             placeholder="Enter email"
@@ -57,14 +62,10 @@ function Login() {
           <Form.Control
             onChange={(e) => {
               setinputPassword(e.target.value);
-              console.log("log value", e.target.value);
             }}
             value={inputPassword}
             placeholder="Password"
           />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
         </Form.Group>
         <Button
           onClick={() => {
