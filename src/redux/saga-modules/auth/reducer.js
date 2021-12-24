@@ -8,6 +8,7 @@ const initConfigs = {
 export const initState = {
   isLoading: false,
   user: undefined,
+  access_token: undefined,
 };
 
 /**
@@ -30,6 +31,7 @@ function authReducer(state = initState, action = {}) {
         ...state,
         isLoading: false,
         user: payload.userInfo,
+        access_token: payload.access_token,
       };
     case Actions.LOG_IN_ERROR:
       return {

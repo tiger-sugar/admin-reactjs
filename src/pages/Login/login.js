@@ -15,7 +15,9 @@ function Login() {
   const [isLoading, setisLoading] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth?.user);
-  console.log("log usser", user);
+  const access_token = useSelector((state) => state.auth?.access_token);
+
+  console.log("log usser", access_token);
   const onLogin = () => {
     setisLoading(true);
     let dataLogin = {
