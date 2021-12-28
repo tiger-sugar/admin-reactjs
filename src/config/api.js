@@ -1,6 +1,5 @@
-const DEV = "http://127.0.0.1:5000/";
-const PROD = "http://127.0.0.1:5000/";
+const API_URL = process.env.REACT_APP_PRODUCTION;
 
 export default {
-  API_LOGIN: DEV + "auth/login",
+  API_LOGIN: API_URL + "auth/login",
 };

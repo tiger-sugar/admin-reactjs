@@ -1,10 +1,5 @@
 import * as Actions from "./constants";
 
-const initConfigs = {
-  requireLogin: true,
-  toggleSidebar: true,
-};
-
 export const initState = {
   isLoading: false,
   myProfile: {},

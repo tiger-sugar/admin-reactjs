@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Form, Button, Container, Spinner } from "react-bootstrap";
+import { Form, Button, Spinner } from "react-bootstrap";
 import axios from "axios";
-import "./login.scss";
+import "./css/login.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { loginSuccess } from "../../redux/saga-modules/auth/actions";
+// import background from "../../file/image/background_1.jpeg";
 import api from "../../config/api";
+
 function Login() {
   useEffect(() => {
     console.log("abc");
@@ -16,8 +18,7 @@ function Login() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth?.user);
   const access_token = useSelector((state) => state.auth?.access_token);
-
-  console.log("log usser", access_token);
+  // console.log("log usser", access_token);
   const onLogin = () => {
     setisLoading(true);
     let dataLogin = {
@@ -42,8 +43,7 @@ function Login() {
   };
 
   return (
-    <Container className="justify-content-md-center">
-      <h2 className="text-login">LOGIN</h2>
+    <>
       <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
@@ -110,7 +110,7 @@ function Login() {
         >
           Đăng nhập
         </Button> */}
-    </Container>
+    </>
   );
 }
 
