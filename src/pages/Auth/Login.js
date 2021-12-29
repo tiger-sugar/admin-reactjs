@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Form, Button, Spinner } from "react-bootstrap";
+import { Form, Button, Spinner, Container, Row, Col } from "react-bootstrap";
 import axios from "axios";
 import "./css/login.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { loginSuccess } from "../../redux/saga-modules/auth/actions";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import background from "../../file/image/background_1.jpeg";
 import api from "../../config/api";
 
@@ -12,6 +14,7 @@ function Login() {
   useEffect(() => {
     console.log("abc");
   }, []);
+  const notify = (value) => toast(value);
   const [inputUsername, setinputUsername] = useState("");
   const [inputPassword, setinputPassword] = useState("");
   const [isLoading, setisLoading] = useState(false);
@@ -29,11 +32,14 @@ function Login() {
       .post(api.API_LOGIN, dataLogin)
       .then(({ data }) => {
         setisLoading(true);
-        dispatch(loginSuccess({ dataLogin: data }));
+        notify(data?.userInfo?.first_name);
+        // setTimeout(() => {
+        //   dispatch(loginSuccess({ dataLogin: data }));
+        // }, 2000);
         console.log("log res", data);
       })
       .catch((err) => {
-        console.log("err", err.response);
+        notify(err?.response?.data?.msg);
       })
       .finally(() => {
         setTimeout(() => {
@@ -43,7 +49,7 @@ function Login() {
   };
 
   return (
-    <>
+    <div className="Login">
       <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
@@ -54,9 +60,6 @@ function Login() {
             value={inputUsername}
             placeholder="Enter email"
           />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -70,47 +73,19 @@ function Login() {
           />
         </Form.Group>
         <Button
+          className="btn-login"
           onClick={() => {
             console.log("button click");
             onLogin();
+            // notify();
           }}
-          variant="primary"
+          variant="success"
         >
           {isLoading ? <Spinner animation="grow" variant="light" /> : "Submit"}
         </Button>
       </Form>
-      {/* <InputGroup className="mb-3">
-          <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
-          <FormControl
-            onChange={(e) => {
-              setinputUsername(e.target.value);
-              console.log("log value", e.target.value);
-            }}
-            value={inputUsername}
-            placeholder="Username"
-            aria-label="Username"
-            aria-describedby="basic-addon1"
-          />
-          <FormControl
-            onChange={(e) => {
-              setinputPassword(e.target.value);
-              console.log("log value", e.target.value);
-            }}
-            value={inputPassword}
-            placeholder="Password"
-            aria-label="Password"
-            aria-describedby="basic-addon1"
-          />
-        </InputGroup>
-        <Button
-          onClick={() => {
-            console.log("button click");
-            onLogin();
-          }}
-        >
-          Đăng nhập
-        </Button> */}
-    </>
+      <ToastContainer />
+    </div>
   );
 }
 

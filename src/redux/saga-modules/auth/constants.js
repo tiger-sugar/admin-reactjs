@@ -2,6 +2,8 @@ export const LOG_IN = "LOG_IN";
 export const LOG_IN_SUCCESS = "LOG_IN_SUCCESS";
 export const LOG_IN_ERROR = "LOG_IN_ERROR";
 
+export const LOG_OUT = "LOG_OUT";
+
 export const SIGN_IN = "auth/SIGN_IN";
 export const SIGN_IN_SUCCESS = "auth/SIGN_IN_SUCCESS";
 export const SIGN_IN_ERROR = "auth/SIGN_IN_ERROR";

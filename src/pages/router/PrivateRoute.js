@@ -8,9 +8,7 @@ export default function PrivateRoute() {
   return (
     <Routes>
       <Route index element={<Home />} />
-      <Route path="about" element={<About />}>
-        <Route path="info" element={<Info />} />
-      </Route>
+      <Route path="about" element={<About />} />
       <Route path="info" element={<Info />} />
     </Routes>
   );

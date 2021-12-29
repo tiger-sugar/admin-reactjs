@@ -25,6 +25,13 @@ function authReducer(state = initState, action = {}) {
         ...state,
         isLoading: true,
       };
+    case Actions.LOG_OUT:
+      console.log("vao logout");
+      return {
+        ...state,
+        user: undefined,
+        access_token: undefined,
+      };
     case Actions.LOG_IN_SUCCESS:
       console.log("vao login success", payload);
       return {

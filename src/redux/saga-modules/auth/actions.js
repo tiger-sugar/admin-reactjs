@@ -6,3 +6,9 @@ export function loginSuccess({ dataLogin }) {
     payload: dataLogin,
   };
 }
+
+export function logout() {
+  return {
+    type: Actions.LOG_OUT,
+  };
+}

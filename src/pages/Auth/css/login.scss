@@ -1,5 +1,13 @@
-.parent {
-  // background-image: url("../../file/image/background_1.jpeg");
-  width: max-content;
-  height: max-content;
+.Login {
+  padding: 60px 0;
+  background-image: url("../../../file//image/background_1.jpeg");
+  height: 100vh;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.Login form {
+  margin: 0 auto;
+  max-width: 320px;
 }
