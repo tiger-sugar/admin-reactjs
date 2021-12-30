@@ -32,10 +32,10 @@ function Login() {
       .post(api.API_LOGIN, dataLogin)
       .then(({ data }) => {
         setisLoading(true);
-        notify(data?.userInfo?.first_name);
-        // setTimeout(() => {
-        //   dispatch(loginSuccess({ dataLogin: data }));
-        // }, 2000);
+        notify(`Xin chào ${data?.userInfo?.first_name}!`);
+        setTimeout(() => {
+          dispatch(loginSuccess({ dataLogin: data }));
+        }, 2000);
         console.log("log res", data);
       })
       .catch((err) => {

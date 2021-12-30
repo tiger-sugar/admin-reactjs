@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
+import { Button, Col, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../../redux/saga-modules/auth/actions";
+import SideBar from "./Aside";
 
 export default function Home() {
   useEffect(() => {
@@ -13,8 +15,15 @@ export default function Home() {
   }
   return (
     <div>
-      <h2 className=".ml-3">Home</h2>
-      <button onClick={handleClick}>Log out</button>
+      <Row>
+        <Col xs={4}>{/* <SideBar /> */}</Col>
+        <Col>
+          <Button onClick={handleClick}>Log out</Button>
+        </Col>
+      </Row>
+      {/* <Row xs={}>
+       
+      </Row> */}
     </div>
   );
 }
